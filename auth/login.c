@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+# include "../games/game_menu.c"
 
-int main();
-
-int login(char *filename)
+int login(char *filename, char *global_username, char *global_name)
 {
     // Variables
     char username[50], password[50];
@@ -20,6 +19,7 @@ int login(char *filename)
     if (check_user(filename, username, password))
     {
         printf("\nLogin successful\n\n");
+        get_user(filename, global_username, global_name); // get user details
         printf("Press any key to continue...");
         getch();
         system("cls");
@@ -32,7 +32,6 @@ int login(char *filename)
         printf("Press any key to continue...");
         getch();
         system("cls");
-        main();
     }
 
     return 0;

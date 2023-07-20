@@ -1,6 +1,4 @@
 #include "../db/utils/db.h"
-int main();
-
 int create_new_account(char *filename)
 {
     char name[50], username[50], password[50];
@@ -25,6 +23,5 @@ int create_new_account(char *filename)
     printf("Press any key to continue...");
     getch();
     system("cls");
-    main();
     return 0;
 }

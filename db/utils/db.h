@@ -85,3 +85,20 @@ int check_user(char *filename, char *username, char *password)
     fclose(fptr);
     return 0;
 }
+
+//give the username and nme of user with the username
+void get_user(char *filename, char *username, char *name)
+{
+    FILE *fptr;
+    User temp_user;
+    fptr = fopen(filename, "rb");
+    while (fread(&temp_user, sizeof(User), 1, fptr) == 1)
+    {
+        if (strcmp(temp_user.username, username) == 0)
+        {
+            strcpy(name, temp_user.name);
+            break;
+        }
+    }
+    fclose(fptr);
+}
