@@ -1,12 +1,6 @@
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
-#include "auth/create_new_account.c"
-#include "auth/login.c"
-#include "games/game_menu.c"
-
-//
-User current_user;
+#include <conio.h>
 
 int main()
 {
@@ -14,21 +8,25 @@ int main()
     int choice;
 
     // Menu
-    // system("cls");
+    system("cls");
     printf("----------------------------------------\n");
     printf("%-40s", "| Welcome to C Games");
     printf("|\n");
     printf("----------------------------------------\n");
-    printf("%-40s", "|   1. Create a new Account");
+    printf("%-40s", "|   1. Truth or Dare");
     printf("|\n");
-    printf("%-40s", "|   2. Login");
+    printf("%-40s", "|   2. Rock Paper Scissors");
+    printf("|\n");
+    printf("%-40s", "|   3. Memory Match");
+    printf("|\n");
+    printf("%-40s", "|   4. Coin Flip");
     printf("|\n");
     printf("%-40s", "|   0. Exit");
     printf("|\n");
     printf("----------------------------------------\n");
 
     // Input choice
-    printf("Enter your choice: ");
+    printf("%-40s", "Enter your choice: ");
     scanf("%d", &choice);
 
     // Switch case
@@ -36,11 +34,19 @@ int main()
     {
     case 1:
         system("cls");
-        create_new_account("./db/users.bin");
+        printf("Truth or Dare");
         break;
     case 2:
         system("cls");
-        login("./db/users.bin");
+        printf("Rock Paper Scissors");
+        break;
+    case 3:
+        system("cls");
+        printf("Memory Match");
+        break;
+    case 4:
+        system("cls");
+        printf("Coin Flip");
         break;
     case 0:
         system("cls");
