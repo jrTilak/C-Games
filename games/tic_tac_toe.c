@@ -1,3 +1,8 @@
+/*
+========================================================================================
+||                          Tic Tac Toe Game                                           ||
+========================================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -6,22 +11,15 @@
 #include <time.h>
 #include <stdbool.h>
 
-/*
-========================================================================================
-||                          Function Prototypes                                         ||
-========================================================================================
-*/
+//========================== Function Prototypes =======================================//
+
 void tic_tac_toe(char *global_name, char *global_username);
-void print_intro(char *name, char *board);
+void print_intro_tic_tac_toe(char *name, char *board);
 void print_board(char *board);
 int is_over(char *board);
 
-/*
-========================================================================================
-||                          Tic Tac Toe Game                                           ||
-========================================================================================
-*/
 
+//========================== Function Definitions =======================================//
 /*
     *function name: tic_tac_toe
     arguments: name and username of currently logged in user
@@ -44,7 +42,7 @@ void tic_tac_toe(char *global_name, char *global_username)
         view_board[i] = ' ';
     }
 
-    print_intro(global_name, real_board);
+    print_intro_tic_tac_toe(global_name, real_board);
     system("cls");
 
     strcpy(player1, global_name);
@@ -105,19 +103,20 @@ void tic_tac_toe(char *global_name, char *global_username)
     else
     {
         printf("|                    Draw                   |\n");
+        register_score("Tic Tac Toe", global_username, "Draw");
     }
     printf("=============================================\n");
     return;
 }
 
 /*
-    *function name: print_intro
+    *function name: print_intro_tic_tac_toe
     arguments: name of the player and the board
     return type: void
     working mechanism: This function prints the introduction of the game and the board
         with numbers.
 */
-void print_intro(char *name, char *board)
+void print_intro_tic_tac_toe(char *name, char *board)
 {
     // intro of game
     printf("-----------------------------------------------------------\n");
