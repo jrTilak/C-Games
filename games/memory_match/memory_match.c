@@ -6,46 +6,50 @@
 int main()
 {
     int n, i,c=0;
+    int a=1;
     int num;
     srand(time(NULL));
-    printf("welcome to memory match");
+    printf("*********************************************\n");
+     printf("\t welcome to memory match\n");
+       printf("*********************************************\n");
+    // for(int j=0;j<4;j++)
+    // {
+    //       printf("*\n");
+
+    // }
+   
+    
+
+    
+    // printf("*")
+
+    // printf("\t welcome to memory match");
     for(i=1;i<=3;i++)
     {
-     printf("\nround %d",i);
+        printf("--------------------------------\n");
+     printf("\tround %d",i);
+       printf("\n--------------------------------\n");
 
-    num = rand();
+    num =  a*rand();
+    a=a*101;
+
     printf("\n%d", num);
-    sleep(1);
+    sleep(4);
     system("cls");
     printf("enter the above random number");
     scanf("%d", &n);
     if (num == n)
     {
-        printf("u got it ");
+        printf("\tu got it\n ");
         c+=1;
     }
     else
     {
-        printf("sorry");
+        printf("\tsorry\n");
     }
 
     }
-//     printf("\nround 1");
 
-//     num = rand();
-//     printf("\n%d", num);
-//     sleep(1);
-//     system("cls");
-//     printf("enter the above random number");
-//     scanf("%d", &n);
-//     if (num == n)
-//     {
-//         printf("u got it ");
-//     }
-//     else
-//     {
-//         printf("sorry");
-//     }
-printf("your score is %d",c);
+printf("\tyour score is %d",c);
      return 0;
  }
