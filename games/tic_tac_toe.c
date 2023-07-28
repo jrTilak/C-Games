@@ -1,26 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <conio.h>
 #include <string.h>
-
-int tic_tac_toe(char *global_name, char *global_username);
-
-void print_board(char *board)
-{
-    // system("cls");
-    printf("\n\n\tTic Tac Toe\n\n");
-    printf("Player 1 (%c)  -  Player 2 (%c)\n\n\n", 'X', 'O');
-    printf("  %c  |  %c  |  %c \n", board[1], board[2], board[3]);
-    printf("_____|_____|_____\n");
-    printf("     |     |     \n");
-    printf("  %c  |  %c  |  %c \n", board[4], board[5], board[6]);
-    printf("_____|_____|_____\n");
-    printf("     |     |     \n");
-    printf("  %c  |  %c  |  %c \n", board[7], board[8], board[9]);
-    printf("     |     |     \n");
-    printf("\n");
-}
 
 void print_intro()
 {
@@ -37,33 +18,56 @@ void print_intro()
     printf("========================================\n");
 }
 
+void print_board(char *board)
+{
+    // system("cls");
+    printf("\n\n\tTic Tac Toe\n\n");
+    printf("Player 1 (%c)  -  Player 2 (%c)\n\n\n", 'X', 'O');
+    printf("  %c  |  %c  |  %c \n", board[0], board[1], board[2]);
+    printf("_____|_____|_____\n");
+    printf("     |     |     \n");
+    printf("  %c  |  %c  |  %c \n", board[3], board[4], board[5]);
+    printf("_____|_____|_____\n");
+    printf("     |     |     \n");
+    printf("  %c  |  %c  |  %c \n", board[6], board[7], board[8]);
+    printf("     |     |     \n");
+    printf("\n");
+}
+
 int is_over(char *board)
 {
     // check for match and return 0 if x match 1 if o match and -1 if no match or draw
-    if (board[1] == board[2] && board[2] == board[3])
+    if (board[0] == board[1] && board[1] == board[2])
     {
-        if (board[1] == 'X')
+        if (board[0] == 'X')
             return 0;
         else
             return 1;
     }
-    else if (board[4] == board[5] && board[5] == board[6])
+    else if (board[3] == board[4] && board[4] == board[5])
     {
-        if (board[4] == 'X')
+        if (board[5] == 'X')
             return 0;
         else
             return 1;
     }
-    else if (board[7] == board[8] && board[8] == board[9])
+    else if (board[6] == board[7] && board[7] == board[8])
     {
         if (board[7] == 'X')
             return 0;
         else
             return 1;
     }
+    else if (board[0] == board[3] && board[3] == board[6])
+    {
+        if (board[0] == 'X')
+            return 0;
+        else
+            return 1;
+    }
     else if (board[1] == board[4] && board[4] == board[7])
     {
-        if (board[1] == 'X')
+        if (board[2] == 'X')
             return 0;
         else
             return 1;
@@ -75,70 +79,66 @@ int is_over(char *board)
         else
             return 1;
     }
-    else if (board[3] == board[6] && board[6] == board[9])
+    else if (board[0] == board[4] && board[4] == board[8])
     {
-        if (board[3] == 'X')
+        if (board[0] == 'X')
             return 0;
         else
             return 1;
     }
-    else if (board[1] == board[5] && board[5] == board[9])
+    else if (board[2] == board[4] && board[4] == board[6])
     {
-        if (board[1] == 'X')
+        if (board[2] == 'X')
             return 0;
         else
             return 1;
     }
-    else if (board[3] == board[5] && board[5] == board[7])
-    {
-        if (board[3] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-    else if (board[1] != '1' && board[2] != '2' && board[3] != '3' &&
-             board[4] != '4' && board[5] != '5' && board[6] != '6' &&
-             board[7] != '7' && board[8] != '8' && board[9] != '9')
+    else if (board[0] != '1' && board[1] != '2' && board[2] != '3' && board[3] != '4' && board[4] != '5' && board[5] != '6' && board[6] != '7' && board[7] != '8' && board[8] != '9')
         return -1;
     else
         return -2;
 }
-
 int tic_tac_toe(char *global_name, char *global_username)
 {
-    int player1_score = 5;
-    int player2_score = 5;
-    char real_board[10], view_board[10];
-    for (int i = 0; i < 10; i++)
+    char real_board[9], view_board[9];
+    char player1[20], player2[20];
+    int player1_score = 5, player2_score = 5;
+    char mark[2] = {'X', 'O'};
+    int winner;
+    int active_player = rand() % 2;
+
+    for (int i = 0; i < 9; i++)
     {
-        real_board[i] = (char)(i + 48);
+        real_board[i] = i + 49;
         view_board[i] = ' ';
     }
-    char another_player[20];
     print_intro();
     print_board(real_board);
+    printf("Press any key to continue...");
+    getch();
 
-    printf("Enter the name of Player 2: ");
-    scanf("%s", another_player);
+    system("cls");
+    strcpy(player1, global_name);
+    printf("Enter player 2 name: ");
+    scanf("%s", player2);
+    system("cls");
 
-    int player_count = 2, choice, i;
-    int active_player = rand() % player_count + 1;
-    char mark[2] = {'X', 'O'};
-
-    int winner;
     do
     {
+        int choice;
+        printf("%s\n: %c", player1, mark[0]);
+        printf("\n%s\n: %c", player2, mark[1]);
+        char active_mark = mark[active_player];
         print_board(view_board);
-        printf("%s's turn (%c). Enter a number: ", (active_player == 1) ? global_name : another_player, (active_player == 1) ? 'X' : 'O');
+        printf("%s's turn. Enter a number(position): ", (active_player == 0) ? player1 : player2);
         scanf("%d", &choice);
-        strcpy(mark, (active_player == 1) ? "X" : "O");
 
         if (choice >= 1 && choice <= 9 && real_board[choice - 1] != 'X' && real_board[choice - 1] != 'O')
         {
-            view_board[choice - 1] = mark[active_player - 1];
-            real_board[choice - 1] = mark[active_player - 1];
+            view_board[choice - 1] = active_mark;
+            real_board[choice - 1] = active_mark;
             active_player++;
-            active_player = (active_player > player_count) ? 1 : active_player;
+            active_player = (active_player > 1) ? 0 : active_player;
         }
         else
         {
@@ -153,24 +153,22 @@ int tic_tac_toe(char *global_name, char *global_username)
     // checks the winner
     if (winner == 0)
     {
-        printf("\n\n\t\t\t\t\t%s wins\n\n", global_name);
+        printf("\n\n\t\t\t\t\t%s wins\n\n", player1);
         player1_score += 5;
     }
     else if (winner == 1)
     {
-        printf("\n\n\t\t\t\t\t%s wins\n\n", another_player);
+        printf("\n\n\t\t\t\t\t%s wins\n\n", player2);
         player2_score += 5;
     }
     else
     {
         printf("\n\n\t\t\t\t\tGame draw\n\n");
     }
-
     return 0;
 }
-
-// int main()
-// {
-//     tic_tac_toe("tilak", "tilak");
-//     return 0;
-// }
+int main(int argc, char const *argv[])
+{
+    tic_tac_toe("tilak", "tilak");
+    return 0;
+}
