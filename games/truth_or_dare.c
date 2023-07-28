@@ -5,12 +5,6 @@
 #include <conio.h>
 #include <time.h>
 
-typedef struct score
-{
-    char game[20];
-    char score[20];
-} Score;
-
 // preprocessor directives for constants
 #define MAX_PLAYERS 5
 #define MAX_QUESTIONS 100

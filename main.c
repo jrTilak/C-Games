@@ -5,42 +5,51 @@
 #include <conio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "./games/truth_or_dare.c"
 
-// structures
+typedef struct score // to store score of player
+{
+    char game[20];
+    char score[20];
+} Score;
 
-typedef struct Users
+typedef struct Users // player details
 {
     char name[50];
     char username[50];
     char password[50];
 } User;
 
-// function prototypes
-int create_new_account(char *filename);                                      // desc: create a new account and save it to the file
-int create_user(char *filename, char *name, char *username, char *password); // desc: create a new user and save it to the file
-int check_username(char *filename, char *username);                          // desc: check if the username exists in the file
-int check_user(char *filename, char *username, char *password);              // desc: check if the username and password exists in the file
-int login(char *filename, char *global_username, char *global_name);         // desc: login the user and return 1 if successful
-void get_user(char *username, char *name);                                   // desc: get the user details from the file
-int game_menu(char *global_name, char *global_username);                     // desc: game menu
-void print_game_history(char *username);                                     // desc: print the game history of the user
-void register_score(char *game, char *username, char *score);                // desc: register the score of the user
-int exit_game(char *msg, int code);                                          // desc: exit the game with a message and code
-
 // user details -> global variables
-char global_username[50],
-    global_name[50];
+char global_username[50], global_name[50];
+
+// user defined header files
+#include "./games/truth_or_dare.c"
+#include "./games/tic_tac_toe.c"
+
+// structures
+
+// function prototypes
+int create_new_account(char *filename);
+int create_user(char *filename, char *name, char *username, char *password);
+int check_username(char *filename, char *username);
+int check_user(char *filename, char *username, char *password);
+int login(char *filename, char *global_username, char *global_name);
+void get_user(char *username, char *name);
+int game_menu(char *global_name, char *global_username);
+void print_game_history(char *username);
+void register_score(char *game, char *username, char *score);
+int exit_game(char *msg, int code);
 
 // main function
 int main()
 {
-main:
+main: // label for goto
+
     // Variables
     int choice;
 
-    // Menu
-    // system("cls");
+    // Welcome Screen
+    system("cls");
     printf("-----------------------------------------\n");
     printf("%-40s", "| Welcome to C Games");
     printf("|\n");
@@ -52,7 +61,6 @@ main:
     printf("%-40s", "|   0. Exit");
     printf("|\n");
     printf("-----------------------------------------\n");
-    // Input choice
     printf("Enter your choice: ");
     scanf("%d", &choice);
 
@@ -67,7 +75,7 @@ main:
     case 2:
         system("cls");
         login("./db/users.bin", global_username, global_name);
-        // goto main; //todo
+        goto main;
         break;
     case 0:
         system("cls");
@@ -290,7 +298,7 @@ int game_menu(char *global_name, char *global_username)
     {
     case 1: // tic tac toe
         system("cls");
-        printf("This game is not available yet\n");
+        tic_tac_toe(global_name, global_username);
         printf("Press any key to continue...");
         getch();
         system("cls");
