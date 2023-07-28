@@ -56,3 +56,6 @@ dkms.conf
 
 #binary files
 *.bin
+
+#temp files
+temp*
