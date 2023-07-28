@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <time.h>
 
+
 void print_board(char *board)
 {
     // system("cls");
@@ -126,11 +127,9 @@ int tic_tac_toe(char *global_name, char *global_username)
     // system("cls");
     char real_board[9], view_board[9];
     char player1[20], player2[20];
-    int player1_score = 5, player2_score = 5;
     char mark[2] = {'X', 'O'};
     int winner;
-    srand(time(0));
-    int active_player = rand() % 2;
+    int active_player = 0;
     for (int i = 0; i < 9; i++)
     {
         real_board[i] = i + 49;
@@ -175,24 +174,26 @@ int tic_tac_toe(char *global_name, char *global_username)
     print_board(view_board);
 
     // checks the winner
+    printf("================= Game Over =================\n");
+
     if (winner == 0)
     {
-        printf("\n\n\t\t\t\t\t%s wins\n\n", player1);
-        player1_score += 5;
+        printf("| Winner: ");
+        printf("%-34s", player1);
+        printf("|\n");
+        register_score("Tic Tac Toe", global_username, "Won");
     }
     else if (winner == 1)
     {
-        printf("\n\n\t\t\t\t\t%s wins\n\n", player2);
-        player2_score += 5;
+        printf("| Winner: ");
+        printf("%-34s", player2);
+        printf("|\n");
+        register_score("Tic Tac Toe", global_username, "Lost");
     }
     else
     {
-        printf("\n\n\t\t\t\t\tGame draw\n\n");
+        printf("|                 Game Draw                 |\n");
     }
-    return 0;
-}
-int main(int argc, char const *argv[])
-{
-    tic_tac_toe("tilak", "tilak");
+    printf("=============================================\n");
     return 0;
 }

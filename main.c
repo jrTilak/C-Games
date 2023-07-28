@@ -6,10 +6,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/*
+========================================================================================
+||                    Structures and Global Variables                                 ||
+========================================================================================
+*/
 typedef struct score // to store score of player
 {
     char game[20];
     char score[20];
+    char played_at[100];
 } Score;
 
 typedef struct Users // player details
@@ -19,16 +25,22 @@ typedef struct Users // player details
     char password[50];
 } User;
 
-// user details -> global variables
-char global_username[50], global_name[50];
+char global_username[50], global_name[50]; // detail of logged in user
 
-// user defined header files
-#include "./games/truth_or_dare.c"
-#include "./games/tic_tac_toe.c"
+/*
+========================================================================================
+||                      User Defined Header Files                                     ||
+========================================================================================
+*/
+#include "./games/truth_or_dare.c" // truth or dare game
+#include "./games/tic_tac_toe.c"   // tic tac toe game
 
-// structures
-
-// function prototypes
+/*
+========================================================================================
+||                          Function Prototypes                                         ||
+========================================================================================
+*/
+void getCurrentDateTime(char *dateTimeString, int size);
 void create_new_account(char *filename);
 bool create_user(char *filename, char *name, char *username, char *password);
 bool is_username_exists(char *filename, char *username);
@@ -40,7 +52,11 @@ void print_game_history(char *username);
 void register_score(char *game, char *username, char *score);
 int exit_game(char *msg, int code);
 
-// main function
+/*
+========================================================================================
+||                         Main     Function                                              ||
+========================================================================================
+*/
 int main()
 {
 main: // label for goto
@@ -50,21 +66,21 @@ main: // label for goto
 
     // Welcome Screen
     system("cls");
-    printf("=========================================\n");
+    printf("==========================================\n");
     printf("%-40s", "|| Welcome to C Games");
     printf("||\n");
-    printf("========================================-\n");
+    printf("==========================================\n");
     printf("%-40s", "||   1. Create a new Account");
     printf("||\n");
     printf("%-40s", "||   2. Login");
     printf("||\n");
     printf("%-40s", "||   0. Exit");
     printf("||\n");
-    printf("=========================================\n");
+    printf("==========================================\n");
     printf("Enter your choice: ");
     scanf("%d", &choice);
 
-    // Switch case
+    // Switch case to handle user choice
     switch (choice)
     {
     case 1:
@@ -92,17 +108,17 @@ main: // label for goto
 
 /*
 ========================================================================================
-||                            Auth Functions                                           ||
+||                            Auth  Functions                                           ||
 ========================================================================================
 */
 
 /*
-function title: create_new_account
-arguments: filename in which user details are stored
-returns: null
-working mechanism: takes user details as input and creates a new account by calling create_user function
-    and checks if the username already exists by calling is_username_exists function ->
-    if username already exists then it shows error message else it creates a new account
+    *function title: create_new_account
+    arguments: filename in which user details are stored
+    returns: null
+    working mechanism: takes user details as input and creates a new account by calling create_user     function
+        and checks if the username already exists by calling is_username_exists function ->
+        if username already exists then it shows error message else it creates a new account
 */
 void create_new_account(char *filename)
 {
@@ -118,7 +134,7 @@ void create_new_account(char *filename)
 
     // Create new account
     system("cls");
-    printf("=========================================\n");
+    printf("==========================================\n");
     if (create_user(filename, name, username, password))
     {
 
@@ -132,7 +148,7 @@ void create_new_account(char *filename)
         printf("%-40s", "||   Username already exists.");
         printf("||\n");
     }
-    printf("=========================================\n");
+    printf("==========================================\n");
     printf("Press any key to continue...");
     getch();
     system("cls");
@@ -140,10 +156,10 @@ void create_new_account(char *filename)
 }
 
 /*
-function title: create_user
-arguments: filename in which user details are stored, name, username, password of the user
-returns: true if account is created successfully else false
-working mechanism: creates a new user and stores it in the file
+    *function title: create_user
+    arguments: filename in which user details are stored, name, username, password of the user
+    returns: true if account is created successfully else false
+    working mechanism: creates a new user and stores it in the file
 */
 bool create_user(char *filename, char *name, char *username, char *password)
 {
@@ -172,10 +188,10 @@ bool create_user(char *filename, char *name, char *username, char *password)
 }
 
 /*
-function title: is_username_exists
-arguments: filename in which user details are stored, username of the user
-returns: true if username exists else false
-working mechanism: checks if the username exists in the file by comparing it with all the usernames in the file
+    *function title: is_username_exists
+    arguments: filename in which user details are stored, username of the user
+    returns: true if username exists else false
+    working mechanism: checks if the username exists in the file by comparing it with all the usernames in the file
 */
 bool is_username_exists(char *filename, char *username)
 {
@@ -195,10 +211,10 @@ bool is_username_exists(char *filename, char *username)
 }
 
 /*
-function title: login
-arguments: filename in which user details are stored, username and password of the user
-returns: true if username and password matches else false
-working mechanism: checks if the username and password matches
+    *function title: login
+    arguments: filename in which user details are stored, username and password of the user
+    returns: true if username and password matches else false
+    working mechanism: checks if the username and password matches
     with the username and password in the file by comparing it
     with all the usernames and passwords in the file
 */
@@ -220,10 +236,10 @@ bool login(char *filename, char *global_username, char *global_name)
     {
 
         system("cls");
-        printf("=========================================\n");
+        printf("==========================================\n");
         printf("%-40s", "||   Login Successful");
         printf("||\n");
-        printf("=========================================\n");
+        printf("==========================================\n");
         // get user details
         strcpy(global_username, username);
         get_user(global_username, global_name);
@@ -236,12 +252,12 @@ bool login(char *filename, char *global_username, char *global_name)
     else
     {
         system("cls");
-        printf("=========================================\n");
+        printf("==========================================\n");
         printf("%-40s", "||   Login Failed");
         printf("||\n");
         printf("%-40s", "||   Invalid username or password");
         printf("||\n");
-        printf("=========================================\n");
+        printf("==========================================\n");
         printf("Press any key to continue...");
         getch();
         system("cls");
@@ -250,12 +266,12 @@ bool login(char *filename, char *global_username, char *global_name)
 }
 
 /*
-function title: is_user_exists
-arguments: filename in which user details are stored, username and password of the user
-returns: true if username and password matches else false
-working mechanism: checks if the username and password matches
-    with the username and password in the file by comparing it
-    with all the usernames and passwords in the file
+    *function title: is_user_exists
+    arguments: filename in which user details are stored, username and password of the user
+    returns: true if username and password matches else false
+    working mechanism: checks if the username and password matches
+        with the username and password in the file by comparing it
+        with all the usernames and passwords in the file
 */
 bool is_user_exists(char *filename, char *username, char *password)
 {
@@ -275,10 +291,10 @@ bool is_user_exists(char *filename, char *username, char *password)
 }
 
 /*
-function title: get_user
-arguments: username of the user, variable to store the name of the user
-returns: void
-working mechanism: gets the name of the user from the file and stores it in the variable called name
+    *function title: get_user
+    arguments: username of the user, variable to store the name of the user
+    returns: void
+    working mechanism: gets the name of the user from the file and stores it in the variable called name
 */
 void get_user(char *username, char *name)
 {
@@ -299,15 +315,15 @@ void get_user(char *username, char *name)
 
 /*
 ========================================================================================
-||                              Game Functions                                         ||
+||                              Game    Functions                                         ||
 ========================================================================================
 */
 
 /*
-function title: game_menu
-arguments: name and username of the user
-returns: void
-working mechanism: displays the game menu
+    *function title: game_menu
+    arguments: name and username of the user
+    returns: void
+    working mechanism: displays the game menu
 */
 void game_menu(char *global_name, char *global_username)
 {
@@ -316,13 +332,13 @@ void game_menu(char *global_name, char *global_username)
 
     // Menu
     system("cls");
-    printf("========================================\n");
+    printf("=========================================\n");
     printf("|| Welcome ");
     printf("%-29s", global_name);
     printf("||\n");
     printf("%-40s", "|| Choose a Game:");
     printf("||\n");
-    printf("========================================\n");
+    printf("=========================================\n");
     printf("%-40s", "||   1. Tic Tac Toe");
     printf("||\n");
     printf("%-40s", "||   2. Truth or Dare");
@@ -333,14 +349,14 @@ void game_menu(char *global_name, char *global_username)
     printf("||\n");
     printf("%-40s", "||   5. Coin Flip ");
     printf("||\n");
-    printf("========================================\n");
+    printf("=========================================\n");
     printf("%-40s", "||   6. Game History");
     printf("||\n");
     printf("%-40s", "||   7. Logout");
     printf("||\n");
     printf("%-40s", "||   0. Exit");
     printf("||\n");
-    printf("========================================\n");
+    printf("=========================================\n");
 
     // Input choice
     printf("Enter your choice: ");
@@ -396,7 +412,7 @@ void game_menu(char *global_name, char *global_username)
         break;
     case 7: // logout
         system("cls");
-        // main();
+        main();
         break;
     case 0: // exit
         system("cls");
@@ -412,15 +428,17 @@ void game_menu(char *global_name, char *global_username)
 }
 
 /*
-function title: print_game_history
-arguments: username of the user
-returns: void
-working mechanism: prints the game history of the user
+        *function title: print_game_history
+        arguments: username of the user
+        returns: void
+        working mechanism: prints the game history of the user
 */
 void print_game_history(char *username)
 {
     FILE *fptr;
-    Score temp_score;
+    // Score temp_score;
+    Score temp_score[100];
+    int i = 0;
     char file_name[100];
     sprintf(file_name, "./db/game_history/%s.bin", username);
     fptr = fopen(file_name, "rb");
@@ -430,10 +448,15 @@ void print_game_history(char *username)
     }
     else
     {
-        printf("Game\t\tScore\n");
-        while (fread(&temp_score, sizeof(Score), 1, fptr) == 1)
+        while (fread(&temp_score[i], sizeof(Score), 1, fptr) == 1)
         {
-            printf("%s\t%s\n", temp_score.game, temp_score.score);
+            i++;
+        }
+        printf("Game\t\tScore\t\tDate\n\n");
+        // print the game history in reverse order
+        for (int j = i - 1; j >= 0; j--)
+        {
+            printf("%s\t%s\t\t%s\n", temp_score[j].game, temp_score[j].score, temp_score[j].played_at);
         }
     }
     fclose(fptr);
@@ -441,15 +464,17 @@ void print_game_history(char *username)
 }
 
 /*
-function title: register_score
-arguments: game name, username of the user, score of the user
-returns: void
-working mechanism: registers the score of the user in the game history
+    *function title: register_score
+    arguments: game name, username of the user, score of the user
+    returns: void
+    working mechanism: registers the score of the user in the game history
 */
 void register_score(char *game, char *username, char *score)
 {
     FILE *fptr;
     Score new_score;
+    char dateTimeString[100];
+    getCurrentDateTime(dateTimeString, sizeof(dateTimeString));
     char file_name[100];
     sprintf(file_name, "./db/game_history/%s.bin", username);
     fptr = fopen(file_name, "ab");
@@ -459,23 +484,43 @@ void register_score(char *game, char *username, char *score)
     }
     strcpy(new_score.game, game);
     strcpy(new_score.score, score);
+    strcpy(new_score.played_at, dateTimeString);
     fwrite(&new_score, sizeof(Score), 1, fptr);
     fclose(fptr);
     return;
 }
 
 /*
-function title: exit_game
-arguments: message to be displayed, exit code
-returns: void
-working mechanism: displays the message and exits the program
+    *function title: exit_game
+    arguments: message to be displayed, exit code
+    returns: void
+    working mechanism: displays the message and exits the program
 */
 int exit_game(char *msg, int code)
 {
-    printf("=========================================\n");
+    printf("==========================================\n");
     printf("||   ");
     printf("%-36s", msg);
     printf("||\n");
-    printf("=========================================\n");
+    printf("==========================================\n");
     exit(code);
+}
+
+/*
+    *function title: getCurrentDateTime
+    arguments: char array to store the date and time, size of the array
+    returns: void
+    working mechanism: gets the current date and time and stores it in the char array
+*/
+void getCurrentDateTime(char *dateTimeString, int size)
+{
+    time_t currentTime;
+    struct tm *localTime;
+
+    // Get the current time
+    currentTime = time(NULL);
+    localTime = localtime(&currentTime);
+
+    // Format the date and time as per your requirement
+    strftime(dateTimeString, size, "%B %d, %Y %H:%M:%S", localTime);
 }
