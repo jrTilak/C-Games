@@ -1,3 +1,8 @@
+/*
+========================================================================================
+||                          Coin Flip Game                                             ||
+========================================================================================
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,6 +11,13 @@
 #include <conio.h>
 #include <string.h>
 
+/*
+    *function name: coin_flip
+    arguments: name and username of currently logged in user
+    return type: void
+    working mechanism: This function is to play coin flip game. After the game is over, it
+        will register the score of the user in the database.
+*/
 int coin_flip(char *global_name, char *global_username)
 {
     int user_score = 0, currentRound = 1;

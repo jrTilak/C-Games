@@ -421,7 +421,6 @@ void game_menu(char *global_name, char *global_username)
         printf("Invalid choice");
         break;
     }
-
     return;
 }
 
