@@ -34,6 +34,7 @@ char global_username[50], global_name[50]; // detail of logged in user
 */
 #include "./games/truth_or_dare.c" // truth or dare game
 #include "./games/tic_tac_toe.c"   // tic tac toe game
+#include "./games/coin_flip.c"     // coin flip game
 
 /*
 ========================================================================================
@@ -396,16 +397,13 @@ void game_menu(char *global_name, char *global_username)
         break;
     case 5: // coin flip
         system("cls");
-        printf("This game is not available yet\n");
-        printf("Press any key to continue...");
-        getch();
-        system("cls");
+        coin_flip(global_name, global_username);
         game_menu(global_name, global_username);
         break;
     case 6: // game history
         system("cls");
         print_game_history(global_username);
-        printf("Press any key to continue...");
+        printf("\nPress any key to continue...");
         getch();
         system("cls");
         game_menu(global_name, global_username);
