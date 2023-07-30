@@ -32,9 +32,10 @@ char global_username[50], global_name[50]; // detail of logged in user
 ||                      User Defined Header Files                                     ||
 ========================================================================================
 */
-#include "./games/truth_or_dare.c" // truth or dare game
-#include "./games/tic_tac_toe.c"   // tic tac toe game
-#include "./games/coin_flip.c"     // coin flip game
+#include "./games/truth_or_dare.c"       // truth or dare game
+#include "./games/tic_tac_toe.c"         // tic tac toe game
+#include "./games/coin_flip.c"           // coin flip game
+#include "./games/rock_paper_scissors.c" // rock paper scissors game
 
 /*
 ========================================================================================
@@ -389,10 +390,7 @@ void game_menu(char *global_name, char *global_username)
         break;
     case 4: // rock paper scissor
         system("cls");
-        printf("This game is not available yet\n");
-        printf("Press any key to continue...");
-        getch();
-        system("cls");
+        rock_paper_scissor(global_name, global_username);
         game_menu(global_name, global_username);
         break;
     case 5: // coin flip
@@ -449,11 +447,11 @@ void print_game_history(char *username)
         {
             i++;
         }
-        printf("Game\t\tScore\t\tDate\n\n");
+        printf("Game\t\t\tScore\t\tDate\n\n");
         // print the game history in reverse order
         for (int j = i - 1; j >= 0; j--)
         {
-            printf("%s\t%s\t\t%s\n", temp_score[j].game, temp_score[j].score, temp_score[j].played_at);
+            printf("%-18s\t%s\t\t%s\n", temp_score[j].game, temp_score[j].score, temp_score[j].played_at);
         }
     }
     fclose(fptr);
