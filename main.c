@@ -61,50 +61,50 @@ int exit_game(char *msg, int code);
 */
 int main()
 {
-main: // label for goto
 
-    // Variables
-    int choice;
-
-    // Welcome Screen
-    system("cls");
-    printf("==========================================\n");
-    printf("%-40s", "|| Welcome to C Games");
-    printf("||\n");
-    printf("==========================================\n");
-    printf("%-40s", "||   1. Create a new Account");
-    printf("||\n");
-    printf("%-40s", "||   2. Login");
-    printf("||\n");
-    printf("%-40s", "||   0. Exit");
-    printf("||\n");
-    printf("==========================================\n");
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
-
-    // Switch case to handle user choice
-    switch (choice)
+    while (true)
     {
-    case 1:
-        system("cls");
-        create_new_account("./db/users.bin");
-        goto main;
-        break;
-    case 2:
-        system("cls");
-        login("./db/users.bin", global_username, global_name);
-        goto main;
-        break;
-    case 0:
-        system("cls");
-        exit_game("Thanks for playing C Games.", 0);
-        break;
-    default:
-        system("cls");
-        printf("Invalid choice");
-        break;
-    }
 
+        // Variables
+        int choice;
+
+        // Welcome Screen
+        system("cls");
+        printf("==========================================\n");
+        printf("%-40s", "|| Welcome to C Games");
+        printf("||\n");
+        printf("==========================================\n");
+        printf("%-40s", "||   1. Create a new Account");
+        printf("||\n");
+        printf("%-40s", "||   2. Login");
+        printf("||\n");
+        printf("%-40s", "||   0. Exit");
+        printf("||\n");
+        printf("==========================================\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        // Switch case to handle user choice
+        switch (choice)
+        {
+        case 1:
+            system("cls");
+            create_new_account("./db/users.bin");
+            break;
+        case 2:
+            system("cls");
+            login("./db/users.bin", global_username, global_name);
+            break;
+        case 0:
+            system("cls");
+            exit_game("Thanks for playing C Games.", 0);
+            break;
+        default:
+            system("cls");
+            printf("Invalid choice");
+            break;
+        }
+    }
     return 0;
 }
 
