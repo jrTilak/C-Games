@@ -41,6 +41,8 @@ void truth_or_dare(char *global_name, char *global_username)
     char dare_qns[MAX_QUESTIONS][MAX_QUESTION_LENGTH];
     int numPlayers, currentPlayer, currentRound, score[MAX_PLAYERS];
     char playerNames[MAX_PLAYERS][50], choice;
+    int questionIndex;
+    char acceptChoice = ' ';
 
     // show game desc
     print_intro_truth_or_dare(global_name);
@@ -94,73 +96,71 @@ void truth_or_dare(char *global_name, char *global_username)
         for (currentPlayer = 0; currentPlayer < numPlayers; currentPlayer++) // Loop through players
         {
 
-        choose: // Label to jump to if player chooses invalid option
-            int questionIndex;
-            char acceptChoice;
+            do
+            { // loop to jump to if player chooses invalid option
+                printf("\n%s, choose Truth (T) or Dare (D): ", playerNames[currentPlayer]);
+                scanf(" %c", &choice);
+                choice = toupper(choice);
 
-            printf("\n%s, choose Truth (T) or Dare (D): ", playerNames[currentPlayer]);
-            scanf(" %c", &choice);
-            choice = toupper(choice);
-
-            // Check if player has chosen Truth/Dare before
-            switch (choice)
-            {
-
-            // Truth
-            case 'T':
-                questionIndex = rand() % truth_count;
-                printf("Truth: %s\n", truth_qns[questionIndex]);
-                printf("Press 'a' if accepted/completed  or 's' to skip: ");
-                scanf(" %c", &acceptChoice);
-                if (tolower(acceptChoice) != 's')
+                // Check if player has chosen Truth/Dare before
+                switch (choice)
                 {
-                    score[currentPlayer] += 5;
 
-                    // Remove question from array
-                    for (int i = questionIndex; i < truth_count - 1; i++)
+                // Truth
+                case 'T':
+                    questionIndex = rand() % truth_count;
+                    printf("Truth: %s\n", truth_qns[questionIndex]);
+                    printf("Press 'a' if accepted/completed  or 's' to skip: ");
+                    scanf(" %c", &acceptChoice);
+                    if (tolower(acceptChoice) != 's')
                     {
-                        strcpy(truth_qns[i], truth_qns[i + 1]);
+                        score[currentPlayer] += 5;
+
+                        // Remove question from array
+                        for (int i = questionIndex; i < truth_count - 1; i++)
+                        {
+                            strcpy(truth_qns[i], truth_qns[i + 1]);
+                        }
+                        truth_count--;
                     }
-                    truth_count--;
-                }
-                else
-                {
-                    score[currentPlayer]--;
-                }
-
-                break;
-
-            // Dare
-            case 'D':
-                questionIndex = rand() % dare_counts;
-                printf("Dare: %s\n", dare_qns[questionIndex]);
-                printf("Press 'a' if accepted/completed or 's' to skip: ");
-                scanf(" %c", &acceptChoice);
-                if (tolower(acceptChoice) != 's')
-                {
-                    score[currentPlayer] += 5;
-
-                    // Remove question from array
-                    for (int i = questionIndex; i < dare_counts - 1; i++)
+                    else
                     {
-                        strcpy(dare_qns[i], dare_qns[i + 1]);
+                        score[currentPlayer]--;
                     }
-                    dare_counts--;
-                }
-                else
-                {
-                    score[currentPlayer]--;
-                }
 
-                break;
+                    break;
 
-            // Invalid choice
-            default:
-                printf("Invalid choice. \n");
-                goto choose;
-                break;
-            }
-            printf("\n");
+                // Dare
+                case 'D':
+                    questionIndex = rand() % dare_counts;
+                    printf("Dare: %s\n", dare_qns[questionIndex]);
+                    printf("Press 'a' if accepted/completed or 's' to skip: ");
+                    scanf(" %c", &acceptChoice);
+                    if (tolower(acceptChoice) != 's')
+                    {
+                        score[currentPlayer] += 5;
+
+                        // Remove question from array
+                        for (int i = questionIndex; i < dare_counts - 1; i++)
+                        {
+                            strcpy(dare_qns[i], dare_qns[i + 1]);
+                        }
+                        dare_counts--;
+                    }
+                    else
+                    {
+                        score[currentPlayer]--;
+                    }
+
+                    break;
+
+                // Invalid choice
+                default:
+                    printf("Invalid choice. \n");
+                    break;
+                }
+                printf("\n");
+            } while (choice != 'T' && choice != 'D');
         }
     }
 

@@ -1,1 +1,0 @@
-This folder/directory contains the game history of the player. The game history is stored in a file called username.bin in which each user has their own file.
