@@ -18,7 +18,6 @@ void print_intro_tic_tac_toe(char *name, char *board);
 void print_board(char *board);
 int is_over(char *board);
 
-
 //========================== Function Definitions =======================================//
 /*
     *function name: tic_tac_toe
@@ -184,73 +183,20 @@ void print_board(char *board)
 */
 int is_over(char *board)
 {
-    // horizontal check
-    if (board[0] == board[1] && board[1] == board[2])
+    int winning_combinations[8][3] = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
+    for (int i = 0; i < 8; i++)
     {
-        if (board[0] == 'X')
-            return 0;
-        else
-            return 1;
+        if (board[winning_combinations[i][0]] == board[winning_combinations[i][1]] && board[winning_combinations[i][1]] == board[winning_combinations[i][2]])
+        {
+            if (board[winning_combinations[i][0]] == 'X')
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
     }
-    else if (board[3] == board[4] && board[4] == board[5])
-    {
-        if (board[3] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-    else if (board[6] == board[7] && board[7] == board[8])
-    {
-        if (board[6] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-
-    // vertical check
-    else if (board[0] == board[3] && board[3] == board[6])
-    {
-        if (board[0] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-    else if (board[1] == board[4] && board[4] == board[7])
-    {
-        if (board[1] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-    else if (board[2] == board[5] && board[5] == board[8])
-    {
-        if (board[2] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-
-    // diagonal check
-    else if (board[0] == board[4] && board[4] == board[8])
-    {
-        if (board[0] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-    else if (board[2] == board[4] && board[4] == board[6])
-    {
-        if (board[2] == 'X')
-            return 0;
-        else
-            return 1;
-    }
-
-    // draw check
-    else if (board[0] != '1' && board[1] != '2' && board[2] != '3' && board[3] != '4' && board[4] != '5' && board[5] != '6' && board[6] != '7' && board[7] != '8' && board[8] != '9')
-        return -1;
-
-    // game not over
-    else
-        return -2;
+    return -2;
 }

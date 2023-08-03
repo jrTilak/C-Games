@@ -1,0 +1,1 @@
+This directory contains the game history of the game. The game history is stored in a file called username.bin. The file is a binary file and contains the game history of the user.
