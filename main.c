@@ -6,11 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/*
-========================================================================================
-||                    Structures and Global Variables                                 ||
-========================================================================================
-*/
+//==================== Structure and Global Variables ===================
 typedef struct score // to store score of player
 {
     char game[20];
@@ -27,21 +23,13 @@ typedef struct Users // player details
 
 char global_username[50], global_name[50]; // detail of logged in user
 
-/*
-========================================================================================
-||                      User Defined Header Files                                     ||
-========================================================================================
-*/
+//==================== Game files ===================
 #include "./games/truth_or_dare.c"       // truth or dare game
 #include "./games/tic_tac_toe.c"         // tic tac toe game
 #include "./games/coin_flip.c"           // coin flip game
 #include "./games/rock_paper_scissors.c" // rock paper scissors game
 
-/*
-========================================================================================
-||                          Function Prototypes                                         ||
-========================================================================================
-*/
+//==================== Function prototypes ===================
 void getCurrentDateTime(char *dateTimeString, int size);
 void create_new_account(char *filename);
 bool create_user(char *filename, char *name, char *username, char *password);
@@ -54,11 +42,7 @@ void print_game_history(char *username);
 void register_score(char *game, char *username, char *score);
 int exit_game(char *msg, int code);
 
-/*
-========================================================================================
-||                         Main Function                                              ||
-========================================================================================
-*/
+//==================== Main Function ===================
 int main()
 {
 
@@ -108,12 +92,7 @@ int main()
     return 0;
 }
 
-/*
-========================================================================================
-||                            Auth  Functions                                           ||
-========================================================================================
-*/
-
+//==================== Auth functions ===================
 /*
     *function title: create_new_account
     arguments: filename in which user details are stored
@@ -127,7 +106,7 @@ void create_new_account(char *filename)
     char name[50], username[50], password[50];
     User all_user[100];
     printf("Name: ");
-    scanf("%s", name);
+    scanf(" %s", name);
     name[0] = toupper(name[0]);
     printf("Username: ");
     scanf("%s", username);
@@ -315,12 +294,7 @@ void get_user(char *username, char *name)
     return;
 }
 
-/*
-========================================================================================
-||                              Game    Functions                                         ||
-========================================================================================
-*/
-
+//==================== Game Functions ===================
 /*
     *function title: game_menu
     arguments: name and username of the user
@@ -345,16 +319,14 @@ void game_menu(char *global_name, char *global_username)
     printf("||\n");
     printf("%-40s", "||   2. Truth or Dare");
     printf("||\n");
-    printf("%-40s", "||   3. Memory Match ");
+    printf("%-40s", "||   3. Rock Paper Scissor ");
     printf("||\n");
-    printf("%-40s", "||   4. Rock Paper Scissor ");
-    printf("||\n");
-    printf("%-40s", "||   5. Coin Flip ");
+    printf("%-40s", "||   4. Coin Flip ");
     printf("||\n");
     printf("=========================================\n");
-    printf("%-40s", "||   6. Game History");
+    printf("%-40s", "||   5. Game History");
     printf("||\n");
-    printf("%-40s", "||   7. Logout");
+    printf("%-40s", "||   6. Logout");
     printf("||\n");
     printf("%-40s", "||   0. Exit");
     printf("||\n");
@@ -380,25 +352,17 @@ void game_menu(char *global_name, char *global_username)
         truth_or_dare(global_name, global_username);
         game_menu(global_name, global_username);
         break;
-    case 3: // memory match
-        system("cls");
-        printf("This game is not available yet\n");
-        printf("Press any key to continue...");
-        getch();
-        system("cls");
-        game_menu(global_name, global_username);
-        break;
-    case 4: // rock paper scissor
+    case 3: // rock paper scissor
         system("cls");
         rock_paper_scissor(global_name, global_username);
         game_menu(global_name, global_username);
         break;
-    case 5: // coin flip
+    case 4: // coin flip
         system("cls");
         coin_flip(global_name, global_username);
         game_menu(global_name, global_username);
         break;
-    case 6: // game history
+    case 5: // game history
         system("cls");
         print_game_history(global_username);
         printf("\nPress any key to continue...");
@@ -406,7 +370,7 @@ void game_menu(char *global_name, char *global_username)
         system("cls");
         game_menu(global_name, global_username);
         break;
-    case 7: // logout
+    case 6: // logout
         system("cls");
         main();
         break;
