@@ -169,7 +169,7 @@ void truth_or_dare(char *global_name, char *global_username)
     int winnerIndex = 0;
     for (int i = 1; i < numPlayers; i++)
     {
-        score[i] = score[i] < 0 ? 0 : score[i];
+        score[i] = score[i] < 0 ? 0 : score[i]; // Set negative scores to 0
         if (score[i] > maxScore)
         {
             maxScore = score[i];
@@ -180,10 +180,14 @@ void truth_or_dare(char *global_name, char *global_username)
     int draw = false;
     for (int i = 0; i < numPlayers; i++)
     {
-        if (score[i] == maxScore)
+        if (score[i] == maxScore && i != winnerIndex)
         {
             draw = true;
             break;
+        }
+        else
+        {
+            draw = false;
         }
     }
 
