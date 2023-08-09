@@ -6,7 +6,6 @@
   - [Truth or Dare Functions:](#truth-or-dare-functions)
   - [Rock Paper Scissors Functions:](#rock-paper-scissors-functions)
   - [Coin Flip Functions:](#coin-flip-functions)
-  - [Memory Match Functions:](#memory-match-functions)
 
 ## Database/Auth Functions:
 1. `create_new_account` function:
@@ -137,5 +136,5 @@
    - Returns: 0 when the game is over.
    - Working Mechanism: The function starts by displaying the introduction and rules of the Coin Flip game. It enters a loop where the player can make a guess by entering 'h' for Heads, 't' for Tails, or 'q' to quit. The computer then simulates the toss of a coin and generates either 'h' for Heads or 't' for Tails. If the player's guess matches the outcome, they get a point, and if not, they lose a point. The score is updated accordingly, and the game continues with the next round. The game ends when the player decides to quit by entering 'q'. After the game ends, the function displays the final score and registers the score of the currently logged-in user in the database using the `register_score` function.
 
-## Memory Match Functions:
-
+---
+---

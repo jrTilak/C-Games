@@ -14,7 +14,6 @@ Team Members:
 2. **Multiplayer and Single-player Games:** After login, the user is presented with a game menu. The user can choose from the following games:
    - [Tic Tac Toe:](#tic-tac-toe) A classic two-player game where players take turns placing X or O in a 3x3 grid. The first player to get three marks in a row, column, or diagonal wins.
    - [Truth or Dare:](#truth-or-dare) A fun party game where players take turns choosing between answering a truth question or performing a dare. Players earn points for successfully completing their chosen task.
-   - [Memory Match:](#memory-match) A game where players have to find matching pairs of cards by flipping them over two at a time. The game tests players' memory and pattern recognition skills.
    - [Rock Paper Scissors:](#rock-paper-scissors) The classic hand game where rock beats scissors, scissors beat paper, and paper beats rock. Players compete against the computer.
    - [Coin Flip:](#coin-flip) A simple game where the user can flip a virtual coin and call heads or tails before flipping.
 
@@ -34,19 +33,13 @@ Team Members:
    - The game features a collection of truth questions and dare tasks to keep the gameplay engaging.
    - Unique Feature: Players can accumulate points by successfully completing truth questions or dares, adding a competitive element to the game.
 
-4. ### **Memory Match (Not Yet Available):**
-   - Memory Match is a memory-based game that tests players' memory and pattern recognition skills.
-   - Players have to find matching pairs of cards by flipping them over two at a time.
-   - The game challenges players to remember the positions of previously revealed cards.
-   - Unique Feature: The memory match game enhances cognitive abilities and provides a fun way to exercise memory.
-
-4. ### **Rock Paper Scissors:**
+3. ### **Rock Paper Scissors:**
    - Rock Paper Scissors is a classic hand game that players can enjoy against the computer.
    - The player and computer choose rock, paper, or scissors simultaneously.
    - Rock beats scissors, scissors beat paper, and paper beats rock.
    - Unique Feature: The game offers a simple yet entertaining experience that relies on luck and quick decision-making.
 
-5. ### **Coin Flip:**
+4. ### **Coin Flip:**
    - Coin Flip is a straightforward game that allows users to virtually flip a coin.
    - The user can call "heads" or "tails" before the flip to make their prediction.
    - The result of the flip determines whether the user wins or loses.

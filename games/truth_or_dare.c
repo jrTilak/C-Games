@@ -33,7 +33,7 @@ void truth_or_dare(char *global_name, char *global_username)
     char questions[MAX_QUESTIONS][MAX_QUESTION_LENGTH];
     char truth_qns[MAX_QUESTIONS][MAX_QUESTION_LENGTH];
     char dare_qns[MAX_QUESTIONS][MAX_QUESTION_LENGTH];
-    int numPlayers, currentPlayer, currentRound, score[MAX_PLAYERS];
+    int numPlayers, currentPlayer, currentRound, rounds, score[MAX_PLAYERS];
     char playerNames[MAX_PLAYERS][50], choice;
     int questionIndex;
     char acceptChoice = ' ';
@@ -45,7 +45,20 @@ void truth_or_dare(char *global_name, char *global_username)
     print_intro_truth_or_dare(global_name);
     srand(time(0)); // Seed random number generator
 
-    // Input number of players
+    // input number of rounds
+    do
+    {
+        printf("Enter the number of rounds (1-10): ");
+        scanf("%d", &rounds);
+
+        if (rounds < 1 || rounds > 10)
+        {
+            system("cls");
+            printf("Invalid number of rounds. Try Again.\n");
+        }
+    } while (rounds < 1 || rounds > 10);
+
+    //  Input number of players
     do
     {
         printf("Enter the number of players (2-5): ");
@@ -81,7 +94,7 @@ void truth_or_dare(char *global_name, char *global_username)
     }
 
     // Game loop
-    for (currentRound = 1; currentRound <= 3; currentRound++)
+    for (currentRound = 1; currentRound <= rounds; currentRound++)
     {
         system("cls");
         printf("\n==================== Round %d ===========================\n", currentRound);
