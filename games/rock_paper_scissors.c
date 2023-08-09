@@ -1,3 +1,4 @@
+//========================= Rock Paper Scissor =========================//
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,20 +7,27 @@
 #include <stdbool.h>
 #include <ctype.h>
 
+/*
+    *function name: generateComputerChoice
+    arguments: none
+    return type: int => 0 for rock, 1 for paper and 2 for scissors
+    working mechanism: This function is to generate a random number between 0 and 2
+        which will be used to determine the computer's choice.
+*/
 int generateComputerChoice()
 {
-    // Generate a random number between 0 and 2
-    // 0 - Rock, 1 - Paper, 2 - Scissors
     return rand() % 3;
 }
 
+/*
+    *function name: determineWinner
+    arguments: player's choice and computer's choice
+    return type: int => 1 for player wins, 0 for draw and -1 for computer wins
+    working mechanism: This function is to determine the winner of the round.
+        It returns 1 if the player wins, 0 if it's a draw and -1 if the computer wins.
+*/
 int determineWinner(int playerChoice, int computerChoice)
 {
-    // Returns:
-    // 1 if the player wins
-    // 0 if it's a draw
-    // -1 if the computer wins
-
     if (playerChoice == computerChoice)
     {
         return 0; // Draw
@@ -36,6 +44,12 @@ int determineWinner(int playerChoice, int computerChoice)
     }
 }
 
+/*
+    *function name: print_intro_rock_paper_scissor
+    arguments: name of currently logged in user
+    return type: void
+    working mechanism: This function is to print the intro of the game.
+*/
 void print_intro_rock_paper_scissor(char *name)
 {
     // intro of game
@@ -59,11 +73,15 @@ void print_intro_rock_paper_scissor(char *name)
     return;
 }
 
+/*
+    *function name: rock_paper_scissor
+    arguments: name of currently logged in user, username of currently logged in user
+    return type: int => 0 after the game is over
+    working mechanism: This function is to play rock paper scissor game.
+*/
 int rock_paper_scissor(char *global_name, char *global_username)
 {
     system("cls");
-    // int playerChoice, computerChoice, result, ;
-    // char choices[3][10] = {"Rock", "Paper", "Scissors"};
     int current_round = 1, player_choice, computer_choice, result, players_score = 0, computers_score = 0;
     bool is_invalid_choice = false;
     char ch_player_choice, ch_result[10];
@@ -84,6 +102,7 @@ int rock_paper_scissor(char *global_name, char *global_username)
         is_invalid_choice &&printf("Invalid choice! Please try again.\n");
         printf("Choose your weapon(r/p/s): ");
         scanf(" %c", &ch_player_choice);
+        printf("\n");
         ch_player_choice = tolower(ch_player_choice);
 
         // Convert the player choice to an integer

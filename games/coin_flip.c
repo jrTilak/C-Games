@@ -1,8 +1,4 @@
-/*
-========================================================================================
-||                          Coin Flip Game                                             ||
-========================================================================================
-*/
+//======================== Coin Flip ========================//
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -72,7 +68,7 @@ int coin_flip(char *global_name, char *global_username)
         {
             printf("Congratulations! You got it.\n");
             user_score++;
-            printf("The coin landed on %s.\n", computer_choice == 'h' ? "Heads" : "Tails");
+            printf("The coin landed on %s.\n\n", computer_choice == 'h' ? "Heads" : "Tails");
             printf("Press any key to continue...");
             getch();
             currentRound++;

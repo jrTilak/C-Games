@@ -1,4 +1,0 @@
-Truth or Dare, truth_or_dare
-Rock Paper Scissors, rock_paper_scissors
-Memory Match, memory_match
-Coin Flip, coin_flip

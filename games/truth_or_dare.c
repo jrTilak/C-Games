@@ -1,8 +1,4 @@
-/*
-========================================================================================
-||                        Truth or Dare Game                                           ||
-========================================================================================
-*/
+//=========================== Truth or Dare Game =======================================//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,13 +8,11 @@
 #include <stdbool.h>
 
 //========================== Preprocessor directives =======================================//
-
 #define MAX_PLAYERS 5
 #define MAX_QUESTIONS 100
 #define MAX_QUESTION_LENGTH 200
 
 //========================== Function Prototypes =======================================//
-
 int loadQuestions(const char *filename, char questions[][MAX_QUESTION_LENGTH]);
 void truth_or_dare(char *global_name, char *global_username);
 void register_score(char *game, char *username, char *score);
@@ -43,6 +37,9 @@ void truth_or_dare(char *global_name, char *global_username)
     char playerNames[MAX_PLAYERS][50], choice;
     int questionIndex;
     char acceptChoice = ' ';
+    // Load questions from files
+    int truth_count = loadQuestions("./db/truth_or_dare/truths.txt", truth_qns);
+    int dare_counts = loadQuestions("./db/truth_or_dare/dares.txt", dare_qns);
 
     // show game desc
     print_intro_truth_or_dare(global_name);
@@ -64,18 +61,14 @@ void truth_or_dare(char *global_name, char *global_username)
     // Input player names and initialize scores
     system("cls");
     strcpy(playerNames[0], global_name);
-    printf(" Enter the name of players except you: ");
-
+    printf("Enter the name of all players except you:\n");
     for (int i = 1; i < numPlayers; i++) // Input player names and initialize scores
     {
-        scanf("%s", playerNames[i]);
+        printf("Name of player %d: ", i + 1);
+        scanf(" %[^\n]", playerNames[i]);
         playerNames[i][0] = toupper(playerNames[i][0]);
         score[i] = 0;
     }
-
-    // Load questions from files
-    int truth_count = loadQuestions("./db/games/truth_or_dare/truths.txt", truth_qns);
-    int dare_counts = loadQuestions("./db/games/truth_or_dare/dares.txt", dare_qns);
 
     // Shuffle player order
     for (int i = numPlayers - 1; i > 0; i--)

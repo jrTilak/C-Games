@@ -1,8 +1,4 @@
-/*
-========================================================================================
-||                          Tic Tac Toe Game                                           ||
-========================================================================================
-*/
+//======================================= Tic Tac Toe ==============================//
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -37,8 +33,8 @@ void tic_tac_toe(char *global_name, char *global_username)
 
     for (int i = 0; i < 9; i++) // initializing the real board with numbers and view board with white spaces
     {
-        real_board[i] = i + 49;
-        view_board[i] = ' ';
+        real_board[i] = i + 49; // ASCII value of 1 is 49 => loop to initialize the board with numbers
+        view_board[i] = ' ';    // loop to initialize the board with white spaces
     }
 
     print_intro_tic_tac_toe(global_name, real_board);
@@ -46,7 +42,7 @@ void tic_tac_toe(char *global_name, char *global_username)
 
     strcpy(player1, global_name);
     printf("Enter another player name: ");
-    scanf("%s", player2);
+    scanf(" %[^\n]", player2);
     player2[0] = toupper(player2[0]);
     system("cls");
 

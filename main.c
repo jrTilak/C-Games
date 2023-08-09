@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-//==================== Structure and Global Variables ===================
+//==================== Structure and Global Variables ==================//
 typedef struct score // to store score of player
 {
     char game[20];
@@ -23,13 +23,13 @@ typedef struct Users // player details
 
 char global_username[50], global_name[50]; // detail of logged in user
 
-//==================== Game files ===================
+//==================== Game files =======================//
 #include "./games/truth_or_dare.c"       // truth or dare game
 #include "./games/tic_tac_toe.c"         // tic tac toe game
 #include "./games/coin_flip.c"           // coin flip game
 #include "./games/rock_paper_scissors.c" // rock paper scissors game
 
-//==================== Function prototypes ===================
+//==================== Function prototypes ===================//
 void getCurrentDateTime(char *dateTimeString, int size);
 void create_new_account(char *filename);
 bool create_user(char *filename, char *name, char *username, char *password);
@@ -42,16 +42,15 @@ void print_game_history(char *username);
 void register_score(char *game, char *username, char *score);
 int exit_game(char *msg, int code);
 
-//==================== Main Function ===================
+//==================== Main Function ===================//
 int main()
 {
 
-    while (true)
+    while (true)  // infinite loop to show welcome screen again and again until user exits
     {
 
         // Variables
         int choice;
-
         // Welcome Screen
         system("cls");
         printf("==========================================\n");
@@ -92,12 +91,12 @@ int main()
     return 0;
 }
 
-//==================== Auth functions ===================
+//==================== Auth functions ===================//
 /*
     *function title: create_new_account
     arguments: filename in which user details are stored
     returns: null
-    working mechanism: takes user details as input and creates a new account by calling create_user     function
+    working mechanism: takes user details as input and creates a new account by calling create_user function
         and checks if the username already exists by calling is_username_exists function ->
         if username already exists then it shows error message else it creates a new account
 */
@@ -106,7 +105,7 @@ void create_new_account(char *filename)
     char name[50], username[50], password[50];
     User all_user[100];
     printf("Name: ");
-    scanf(" %s", name);
+    scanf(" %[^\n]", name); // to take input with spaces
     name[0] = toupper(name[0]);
     printf("Username: ");
     scanf("%s", username);
@@ -165,7 +164,6 @@ bool create_user(char *filename, char *name, char *username, char *password)
         fclose(fptr);
         return true;
     }
-    return true;
 }
 
 /*
@@ -426,7 +424,7 @@ void print_game_history(char *username)
     *function title: register_score
     arguments: game name, username of the user, score of the user
     returns: void
-    working mechanism: registers the score of the user in the game history
+    working mechanism: registers the score of the user in the game history folder in the file named as username.bin
 */
 void register_score(char *game, char *username, char *score)
 {
@@ -461,7 +459,7 @@ int exit_game(char *msg, int code)
     printf("||   ");
     printf("%-36s", msg);
     printf("||\n");
-    printf("==========================================\n");
+    printf("==========================================\n\n\n\n");
     exit(code);
 }
 
@@ -473,13 +471,18 @@ int exit_game(char *msg, int code)
 */
 void getCurrentDateTime(char *dateTimeString, int size)
 {
-    time_t currentTime;
-    struct tm *localTime;
+    // Declare variables to hold time information
+    time_t currentTime;         // Represents the current time as seconds since the epoch
+    struct tm *localTime;       // Pointer to a structure holding local time components
 
     // Get the current time
-    currentTime = time(NULL);
-    localTime = localtime(&currentTime);
+    currentTime = time(NULL);   // Retrieve the current time in seconds since the epoch
 
-    // Format the date and time as per your requirement
+    // Convert the current time to local time
+    localTime = localtime(&currentTime); // Convert the epoch time to local time components
+
+    // Format the date and time using strftime
     strftime(dateTimeString, size, "%B %d, %Y %H:%M:%S", localTime);
+    // The strftime function formats the local time components and stores the result in dateTimeString
+    // %B: Full month name, %d: Day of the month (01-31), %Y: Full year, %H: Hour (00-23), %M: Minute (00-59), %S: Second (00-59)
 }
