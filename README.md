@@ -1,10 +1,8 @@
 "C Games" is a collection of interactive games developed as the 1st-semester project for the C programming subject at the IOE, Purwanchal Campus, Dharan. The program aims to provide a fun and engaging experience for users, allowing them to play various games. It also includes features like user account creation, login, game history tracking, and high-score recording.
 
-Team Members:
-- [jrTilak](https://github.com/jrTilak)
-- [Utsab Pandey](https://github.com/kaleUtsab)
-- [Sumit Rijal](https://github.com/sumitrijal1)
-- [Sagar Mainali](https://github.com/sagar0044)
+<div align="center">
+<img src="https://repository-images.githubusercontent.com/665353287/ed3b74aa-ff46-4e5c-b34f-a5709d4f2f7d" />
+</div>
 
 ## See [Documentation](./functions.md) for detailed explanation of used functions and variables
 
